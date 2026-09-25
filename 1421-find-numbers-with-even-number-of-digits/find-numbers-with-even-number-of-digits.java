@@ -1,6 +1,6 @@
 class Solution {
     public int findNumbers(int[] nums) {
-        int ans=0;
+      /*  int ans=0;
         int m=nums.length;
         
         
@@ -16,7 +16,14 @@ class Solution {
                 ans++;
             }
         }
+        return ans;*/
+        int ans=0;
+        for(int val:nums){
+            String str=String.valueOf(val);
+            if(str.length()%2==0){
+                ans++;
+            }
+        }
         return ans;
-        
     }
 }
