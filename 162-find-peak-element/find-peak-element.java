@@ -10,6 +10,6 @@ class Solution {
                 high=mid;
             }
         }
-        return low;
+        return high;
     }
 }
