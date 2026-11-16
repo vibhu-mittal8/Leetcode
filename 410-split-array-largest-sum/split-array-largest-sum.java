@@ -1,36 +1,46 @@
 class Solution {
-    public int splitArray(int[] nums, int k) {
-
-        int low = 0;
-        int high = 0;
-
-        for (int num : nums) {
-            low = Math.max(low, num);
-            high += num;
+    public int splitArray(int[] arr, int k) {
+        if (k > arr.length) {
+            return -1;
         }
 
-        while (low < high) {
-            int mid = low + (high - low) / 2;
+        long low = 0;
+        long high = 0;
 
-            int sum = 0;
-            int count = 1;
+        for (int val : arr) {
+            low = Math.max(low, val);
+            high += val;
+        }
 
-            for (int num : nums) {
-                if (sum + num > mid) {
-                    count++;
-                    sum = num;
-                } else {
-                    sum += num;
-                }
-            }
+        long ans = -1;
 
-            if (count > k) {
-                low = mid + 1;
+        while (low <= high) {
+            long mid = low + (high - low) / 2;
+
+            if (isPossible(arr, k, mid)) {
+                ans = mid;
+                high = mid - 1;
             } else {
-                high = mid;
+                low = mid + 1;
             }
         }
 
-        return low;       
+        return (int) ans;
+    }
+
+    public boolean isPossible(int[] arr, int k, long mid) {
+        int count = 1;
+        long sum = 0;
+
+        for (int val : arr) {
+            if (sum + val > mid) {
+                count++;
+                sum = val;
+            } else {
+                sum += val;
+            }
+        }
+
+        return count <= k;
     }
 }
