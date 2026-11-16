@@ -22,7 +22,7 @@ class Solution {
         for(int i=1;i<nums.length;i++){
             if(nums[i]-pos>=mid){
                 count++;
-                pos=nums[i];;
+                pos=nums[i];
             }
         }
         return count>=m;
